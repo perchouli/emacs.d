@@ -42,4 +42,8 @@
     "Toggle load `whitespace-mode' options." t)
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
+(custom-set-faces
+ '(whitespace-space ((t (:foreground "gray70")))))
+
+
 (provide 'init-whitespace)
