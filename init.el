@@ -34,12 +34,14 @@
 (ignore-errors (tool-bar-mode -1))
 
 
-(require 'window-numbering)
+(require-package 'window-numbering)
 (window-numbering-mode 1)
-(require 'multiple-cursors)
+(require-package 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(require-package 'auto-complete)
 (ac-config-default)
+(setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
