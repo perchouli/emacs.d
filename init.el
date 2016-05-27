@@ -42,3 +42,4 @@
 
 (require-package 'auto-complete)
 (ac-config-default)
+(setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
