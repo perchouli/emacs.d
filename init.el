@@ -30,7 +30,9 @@
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)
 
-(tool-bar-mode -1)
+
+(ignore-errors (tool-bar-mode -1))
+
 
 (require 'window-numbering)
 (window-numbering-mode 1)
