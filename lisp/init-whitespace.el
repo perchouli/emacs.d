@@ -44,6 +44,6 @@
 
 (custom-set-faces
  '(whitespace-space ((t (:foreground "gray70")))))
-
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil))) 
 
 (provide 'init-whitespace)
