@@ -20,7 +20,7 @@
  '(inhibit-startup-screen t))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-(setq indent-line-function 'insert-tab)
+(setq indent-line-function 'insert-tab)(setq org-startup-indented t)
 
 (ignore-errors (tool-bar-mode -1))
 
