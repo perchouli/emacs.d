@@ -10,6 +10,9 @@
 (require 'init-elpa)
 
 (require 'init-dired)
+(require 'recentf)
+(setq recentf-max-saved-items 100)
+(recentf-mode 1)
 
 (custom-set-variables
  '(ansi-color-faces-vector
@@ -18,6 +21,13 @@
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (wombat)))
  '(inhibit-startup-screen t))
+
+(set-face-attribute
+'default nil :font "Consolas")
+(dolist (charset '(kana han symbol cjk-misc bopomofo))(set-fontset-font (frame-parameter nil 'font)
+charset
+(font-spec :family "Microsoft YaHei" )))
+
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)(setq org-startup-indented t)
