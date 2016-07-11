@@ -22,11 +22,12 @@
  '(custom-enabled-themes (quote (wombat)))
  '(inhibit-startup-screen t))
 
-(set-face-attribute
-'default nil :font "Consolas")
-(dolist (charset '(kana han symbol cjk-misc bopomofo))(set-fontset-font (frame-parameter nil 'font)
-charset
-(font-spec :family "Microsoft YaHei" )))
+(set-face-attribute 'default nil :font "Consolas")
+(if (eq system-type 'windows-nt)
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+  charset (font-spec :family "Microsoft YaHei" )))
+)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -42,9 +43,6 @@ charset
 (ac-config-default)
 (setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
 
-
-(global-unset-key (kbd "<up>"))
-(global-unset-key (kbd "<down>"))
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
