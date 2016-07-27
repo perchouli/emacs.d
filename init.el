@@ -11,6 +11,9 @@
 
 ;;(require 'init-dired) ;; Bug on Windows
 (require-package 'dired-details)
+(require-package 'resize-window)
+;;(require-package 'js2-mode)
+
 
 (require 'recentf)
 (setq recentf-max-saved-items 100)
@@ -24,7 +27,9 @@
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (wombat)))
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+)
+
 
 (set-face-attribute 'default nil :font "Consolas")
 (if (eq system-type 'windows-nt)
@@ -35,6 +40,7 @@
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
+(setq js-indent-level 2)
 (setq indent-line-function 'insert-tab)(setq org-startup-indented t)
 (setq default-directory "C:/cygwin64/srv/")
 
@@ -53,5 +59,9 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "<left>") 'previous-buffer)
-(global-set-key (kbd "<right>") 'next-buffer)
+(global-unset-key (kbd "<up>"))
+(global-unset-key (kbd "<down>"))
+(global-unset-key (kbd "<left>"))
+(global-unset-key (kbd "<right>"))
+(global-set-key (kbd "C-M-n")(lambda () (interactive) (next-line 5)))
+(global-set-key (kbd "C-M-p")(lambda () (interactive) (previous-line 5)))
