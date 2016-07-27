@@ -9,10 +9,14 @@
 (require 'init-site-lisp)
 (require 'init-elpa)
 
-(require 'init-dired)
+;;(require 'init-dired) ;; Bug on Windows
+(require-package 'dired-details)
+
 (require 'recentf)
 (setq recentf-max-saved-items 100)
 (recentf-mode 1)
+
+(desktop-save-mode 1)
 
 (custom-set-variables
  '(ansi-color-faces-vector
@@ -32,6 +36,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)(setq org-startup-indented t)
+(setq default-directory "C:/cygwin64/srv/")
 
 (ignore-errors (tool-bar-mode -1))
 
