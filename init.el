@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'whitespace)
 
@@ -12,14 +19,16 @@
 ;;(require 'init-dired) ;; Bug on Windows
 (require-package 'dired-details)
 (require-package 'resize-window)
-;;(require-package 'js2-mode)
-
 
 (require 'recentf)
 (setq recentf-max-saved-items 100)
 (recentf-mode 1)
 
-(desktop-save-mode 1)
+
+(setq default-directory "C:/cygwin64/srv/")
+(global-set-key (kbd "C-S-s") 'desktop-save)
+(global-set-key (kbd "C-S-o") 'desktop-change-dir)
+;;(desktop-save-mode 1)
 
 (custom-set-variables
  '(ansi-color-faces-vector
@@ -42,7 +51,7 @@
 (setq-default tab-width 2)
 (setq js-indent-level 2)
 (setq indent-line-function 'insert-tab)(setq org-startup-indented t)
-(setq default-directory "C:/cygwin64/srv/")
+
 
 (ignore-errors (tool-bar-mode -1))
 
