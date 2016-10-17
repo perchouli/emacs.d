@@ -19,6 +19,8 @@
 ;;(require 'init-dired) ;; Bug on Windows
 (require-package 'dired-details)
 (require-package 'resize-window)
+;;(require-package 'php-mode)
+
 
 (require 'recentf)
 (setq recentf-max-saved-items 100)
@@ -37,6 +39,7 @@
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (wombat)))
  '(inhibit-startup-screen t)
+
 )
 
 
@@ -51,6 +54,8 @@
 (setq-default tab-width 2)
 (setq js-indent-level 2)
 (setq indent-line-function 'insert-tab)(setq org-startup-indented t)
+(setq frame-title-format "%b %f %+")
+
 
 
 (ignore-errors (tool-bar-mode -1))
