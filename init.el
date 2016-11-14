@@ -26,8 +26,6 @@
 (setq recentf-max-saved-items 100)
 (recentf-mode 1)
 
-
-(setq default-directory "C:/cygwin64/srv/")
 (global-set-key (kbd "C-S-s") 'desktop-save)
 (global-set-key (kbd "C-S-o") 'desktop-change-dir)
 ;;(desktop-save-mode 1)
@@ -43,8 +41,12 @@
 )
 
 
-(set-face-attribute 'default nil :font "Consolas")
+
 (if (eq system-type 'windows-nt)
+  (setq default-directory "C:/cygwin64/srv/")
+(ignore-errors
+  (set-face-attribute 'default nil :font "Consolas")
+)
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
   charset (font-spec :family "Microsoft YaHei" )))
