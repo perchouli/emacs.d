@@ -38,11 +38,12 @@
 
 (if (eq system-type 'windows-nt)
   (setq default-directory "C:/cygwin64/srv/")
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-  charset (font-spec :family "Microsoft YaHei" )))
+)
+
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
   (ignore-errors
-    (set-face-attribute 'default nil :font "Consolas"))
+    (set-fontset-font (frame-parameter nil 'font)
+                      charset (font-spec :family "Microsoft YaHei" )))
 )
 
 (setq-default indent-tabs-mode nil)
@@ -56,7 +57,6 @@
 (window-numbering-mode 1)
 
 (ido-mode 1)
-(global-hl-line-mode 1)
 
 (require-package 'auto-complete)
 (ac-config-default)
