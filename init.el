@@ -6,6 +6,7 @@
 (package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'auto-mode-alist '("\\.\\(es\\|js\\)\\'" . js-mode))
 (require 'whitespace)
 
 (require 'linum)
