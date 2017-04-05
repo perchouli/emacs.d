@@ -1,40 +1,40 @@
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
+;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(require 'whitespace)
 
-(require 'linum)
-(global-linum-mode t)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
+(setq frame-title-format "%b %f %+")
+(setq inhibit-startup-screen t)
+
+(setq js2-strict-missing-semi-warning nil)
+
+(package-initialize)
+(require 'whitespace)
 
 (require 'init-whitespace)
 (require 'init-utils)
 (require 'init-site-lisp)
 (require 'init-elpa)
+(require 'init-org)
+(require 'init-key)
 
-;;(require 'init-dired) ;; Bug on Windows
+;; Install packages
 (require-package 'dired-details)
 (require-package 'resize-window)
-;;(require-package 'php-mode)
+(require-package 'guide-key)
+(require-package 'window-numbering)
+(require-package 'auto-complete)
+(require-package 'multiple-cursors)
 
+(add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . js2-mode))
 
 (require 'recentf)
-(setq recentf-max-saved-items 100)
 (recentf-mode 1)
-
-(custom-set-variables
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-enabled-themes (quote (wombat)))
- '(inhibit-startup-screen t)
-)
-
 
 (if (eq system-type 'windows-nt)
   (setq default-directory "C:/cygwin64/srv/")
@@ -49,31 +49,22 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
-(setq indent-line-function 'insert-tab)(setq org-startup-indented t)
-(setq frame-title-format "%b %f %+")
 
-(ignore-errors (tool-bar-mode -1))
-(require-package 'window-numbering)
+(global-linum-mode t)
 (window-numbering-mode 1)
-
 (ido-mode 1)
 
-(require-package 'auto-complete)
 (ac-config-default)
 
-(setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
+;; snippet
+(add-to-list 'load-path
+             "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
 
-(require-package 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-unset-key (kbd "<up>"))
-(global-unset-key (kbd "<down>"))
-(global-unset-key (kbd "<left>"))
-(global-unset-key (kbd "<right>"))
-(global-set-key (kbd "C-M-n")(lambda () (interactive) (next-line 5)))
-(global-set-key (kbd "C-M-p")(lambda () (interactive) (previous-line 5)))
-
-(global-set-key (kbd "C-S-s") 'desktop-save)
-(global-set-key (kbd "C-S-o") 'desktop-change-dir)
+;; guide-key
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+(guide-key-mode 1)
+(setq guide-key/recursive-key-sequence-flag t)
+(setq guide-key/popup-window-position 'bottom)
