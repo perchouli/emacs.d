@@ -12,6 +12,7 @@
               (directory-files (expand-file-name parent-dir) t "^[^\\.]"))
              load-path)))))
 
+(shell-command-to-string "mkdir -p ~/.emacs.d/site-lisp")
 (sanityinc/add-subdirs-to-load-path
  (expand-file-name "site-lisp/" user-emacs-directory))
 
