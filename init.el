@@ -30,6 +30,7 @@
 (require-package 'window-numbering)
 (require-package 'auto-complete)
 (require-package 'multiple-cursors)
+(require-package 'js2-mode)
 
 (add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . js2-mode))
 
@@ -57,6 +58,9 @@
 (ac-config-default)
 
 ;; snippet
+(if (eq (file-exists-p "~/.emacs.d/plugins/yasnippet") nil)
+  (shell-command-to-string "git clone --recursive https://github.com/joaotavora/yasnippet.git ~/.emacs.d/plugins/yasnippet --depth 1")
+)
 (add-to-list 'load-path
              "~/.emacs.d/plugins/yasnippet")
 (require 'yasnippet)
