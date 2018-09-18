@@ -24,22 +24,15 @@
 (require 'init-key)
 
 ;; Install packages
-(require-package 'dired-details)
-(require-package 'resize-window)
+(require-package 'neotree)
+(require-package 'typescript-mode)
 (require-package 'guide-key)
 (require-package 'window-numbering)
 (require-package 'auto-complete)
 (require-package 'multiple-cursors)
-(require-package 'js2-mode)
-
-(add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . js2-mode))
 
 (require 'recentf)
-(recentf-mode 1)
-
-(if (eq system-type 'windows-nt)
-  (setq default-directory "C:/cygwin64/srv/")
-)
+(recentf-mode t)
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (ignore-errors
@@ -50,11 +43,12 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\\(\.ts\\|\.tsx\\)\\'" . typescript-mode))
 
 (global-linum-mode t)
-(window-numbering-mode 1)
-(ido-mode 1)
-
+(window-numbering-mode t)
+(ido-mode t)
 (ac-config-default)
 
 ;; snippet
@@ -64,11 +58,13 @@
 (add-to-list 'load-path
              "~/.emacs.d/plugins/yasnippet")
 (require 'yasnippet)
-(yas-global-mode 1)
+(yas-global-mode t)
+
+;; emmet
+(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
 
 ;; guide-key
 (require 'guide-key)
 (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
-(setq guide-key/popup-window-position 'bottom)
