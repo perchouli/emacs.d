@@ -24,12 +24,17 @@
 (require 'init-key)
 
 ;; Install packages
-(require-package 'neotree)
+;(require-package 'neotree)
 (require-package 'typescript-mode)
 (require-package 'guide-key)
 (require-package 'window-numbering)
 (require-package 'auto-complete)
 (require-package 'multiple-cursors)
+(require-package 'exec-path-from-shell)
+(require-package 'flycheck)
+(require-package 'emmet-mode)
+
+(global-flycheck-mode)
 
 (require 'recentf)
 (recentf-mode t)
@@ -43,7 +48,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
-(add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\\(\.ts\\|\.tsx\\)\\'" . typescript-mode))
 
 (global-linum-mode t)
@@ -68,3 +72,7 @@
 (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+;(setenv "PATH" (concat (getenv "PATH") ":/usr/local/go/bin"))
+;(setq exec-path (append exec-path '("/usr/local/go/bin")))
