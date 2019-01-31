@@ -26,6 +26,7 @@
 ;; Install packages
 ;(require-package 'neotree)
 (require-package 'typescript-mode)
+(require-package 'emmet-mode)
 (require-package 'guide-key)
 (require-package 'window-numbering)
 (require-package 'auto-complete)
@@ -54,6 +55,9 @@
 (window-numbering-mode t)
 (ido-mode t)
 (ac-config-default)
+;(global-auto-complete-mode t)
+(add-to-list 'ac-modes 'typescript-mode)
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 
 ;; snippet
 (if (eq (file-exists-p "~/.emacs.d/plugins/yasnippet") nil)
@@ -65,7 +69,10 @@
 (yas-global-mode t)
 
 ;; emmet
-(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+(add-hook 'emmet-mode-hook (lambda ()
+ (setq emmet-indentation 2)
+ (setq emmet-expand-jsx-className? t)
+))
 
 ;; guide-key
 (require 'guide-key)
