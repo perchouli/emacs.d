@@ -11,7 +11,6 @@
 (setq frame-title-format "%b %f %+")
 (setq inhibit-startup-screen t)
 
-(setq js2-strict-missing-semi-warning nil)
 
 (package-initialize)
 (require 'whitespace)
@@ -29,7 +28,9 @@
 (require-package 'emmet-mode)
 (require-package 'guide-key)
 (require-package 'window-numbering)
-(require-package 'auto-complete)
+(require-package 'jedi-core)
+(require-package 'company-jedi)
+(require-package 'company-go)
 (require-package 'multiple-cursors)
 (require-package 'exec-path-from-shell)
 (require-package 'flycheck)
@@ -46,6 +47,8 @@
                       charset (font-spec :family "Microsoft YaHei" )))
 )
 
+;; format
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
@@ -54,10 +57,17 @@
 (global-linum-mode t)
 (window-numbering-mode t)
 (ido-mode t)
-(ac-config-default)
-;(global-auto-complete-mode t)
-(add-to-list 'ac-modes 'typescript-mode)
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+
+;; company
+(setq jedi:complete-on-dot t)
+(setq jedi:use-shortcuts t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-jedi)
+  ;(add-to-list 'company-backends 'company-go) ; gocode is not maintained anymore
+)
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "C-<tab>") 'company-complete-common)
 
 ;; snippet
 (if (eq (file-exists-p "~/.emacs.d/plugins/yasnippet") nil)
