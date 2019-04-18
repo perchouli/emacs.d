@@ -1,6 +1,7 @@
 ;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(recentf-mode t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -23,10 +24,13 @@
 (require 'init-key)
 
 ;; Install packages
-;(require-package 'neotree)
+(require-package 'treemacs)
+(require-package 'ggtags)
+;(setq-local imenu-create-index-function #'ggtags-build-imenu-index)
 (require-package 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\\(\.ts\\|\.tsx\\)\\'" . typescript-mode))
 (require-package 'emmet-mode)
-(require-package 'guide-key)
+;(require-package 'guide-key)
 (require-package 'window-numbering)
 (require-package 'jedi-core)
 (require-package 'company-jedi)
@@ -34,25 +38,11 @@
 (require-package 'multiple-cursors)
 (require-package 'exec-path-from-shell)
 (require-package 'flycheck)
-(require-package 'emmet-mode)
 
+
+(treemacs)
+(treemacs-tag-follow-mode t)
 (global-flycheck-mode)
-
-(require 'recentf)
-(recentf-mode t)
-
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  (ignore-errors
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset (font-spec :family "Microsoft YaHei" )))
-)
-
-;; format
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
-(setq js-indent-level 2)
-(add-to-list 'auto-mode-alist '("\\\(\.ts\\|\.tsx\\)\\'" . typescript-mode))
 
 (global-linum-mode t)
 (window-numbering-mode t)
