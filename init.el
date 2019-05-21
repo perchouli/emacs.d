@@ -12,7 +12,6 @@
 (setq frame-title-format "%b %f %+")
 (setq inhibit-startup-screen t)
 
-
 (package-initialize)
 (require 'whitespace)
 
@@ -27,10 +26,12 @@
 (require-package 'treemacs)
 (require-package 'ggtags)
 ;(setq-local imenu-create-index-function #'ggtags-build-imenu-index)
+(require-package 'rjsx-mode)
+(add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . rjsx-mode))
 (require-package 'typescript-mode)
 (add-to-list 'auto-mode-alist '("\\\(\.ts\\|\.tsx\\)\\'" . typescript-mode))
 (require-package 'emmet-mode)
-;(require-package 'guide-key)
+(require-package 'which-key)
 (require-package 'window-numbering)
 (require-package 'jedi-core)
 (require-package 'company-jedi)
@@ -38,6 +39,7 @@
 (require-package 'multiple-cursors)
 (require-package 'exec-path-from-shell)
 (require-package 'flycheck)
+(require-package 'restclient)
 
 
 (treemacs)
@@ -47,6 +49,8 @@
 (global-linum-mode t)
 (window-numbering-mode t)
 (ido-mode t)
+(which-key-mode t)
+(electric-indent-mode -1)
 
 ;; company
 (setq jedi:complete-on-dot t)
@@ -54,7 +58,7 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-jedi)
-  ;(add-to-list 'company-backends 'company-go) ; gocode is not maintained anymore
+  ;(add-to-list 'company-backends 'company-go) ; gocode for module: https://github.com/stamblerre/gocode
 )
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-<tab>") 'company-complete-common)
@@ -68,18 +72,15 @@
 (require 'yasnippet)
 (yas-global-mode t)
 
+(add-hook 'js2-mode-hook (lambda ()
+  (setq js2-basic-offset 2)
+))
 ;; emmet
 (add-hook 'emmet-mode-hook (lambda ()
- (setq emmet-indentation 2)
- (setq emmet-expand-jsx-className? t)
+  (setq emmet-indentation 2)
+  (setq emmet-expand-jsx-className? t)
 ))
 
-;; guide-key
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
-(guide-key-mode 1)
-(setq guide-key/recursive-key-sequence-flag t)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
-;(setenv "PATH" (concat (getenv "PATH") ":/usr/local/go/bin"))
-;(setq exec-path (append exec-path '("/usr/local/go/bin")))
+
