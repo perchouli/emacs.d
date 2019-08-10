@@ -1,3 +1,7 @@
+# key: block
+# name: block
+# group: Django
+# --
 {% block $1 %}
 	$2
 {% endblock $1 %}

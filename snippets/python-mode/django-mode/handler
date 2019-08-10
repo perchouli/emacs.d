@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-# key: handler
-# name: view
-# contributor: MyFreeWeb
+# group: Django
 # --
 class ${1:MyHandler}(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')

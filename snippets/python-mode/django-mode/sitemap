@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # key: sitemap
 # name: sitemap
-# contributor: MyFreeWeb
+# group: Django
 # --
 class ${1:MyMap}(Sitemap):
     changefreq = "${2:never}"

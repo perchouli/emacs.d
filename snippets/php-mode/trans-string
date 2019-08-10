@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Custom Language sting
+# key: __
+# --
+{{ __('custom$1.$2.$3') }}

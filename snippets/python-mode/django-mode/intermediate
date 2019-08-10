@@ -1,3 +1,5 @@
+# group: Django
+# --
 class ${1:Modelname}(models.Model):
 	"""${2:($1 description)}"""
 	${3:target_field_name} = models.ForeignKey(${4:TargetModel})

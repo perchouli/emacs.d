@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # key: feed
 # name : feed 
-# contributor : MyFreeWeb
+# group: Django
 # --
 class ${1:MyFeed}(Feed):
     title = u"${2: My Feed}"

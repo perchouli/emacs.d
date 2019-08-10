@@ -1,1 +1,3 @@
+# group: Django
+# --
 ${1:slug} = models.SlugField()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # key: manager
 # name: manager
-# contributor: Brandon Height <bmheight@gmail.com>
+# group: Django
 # --
 class ${1:MyModelManager}(models.Manager):
       def get_query_set(self):

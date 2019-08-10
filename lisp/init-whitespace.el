@@ -44,6 +44,9 @@
 
 (custom-set-faces
  '(whitespace-space ((t (:foreground "gray70")))))
-(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil))) 
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 (provide 'init-whitespace)

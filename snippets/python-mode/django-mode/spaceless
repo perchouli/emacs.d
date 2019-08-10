@@ -1,3 +1,5 @@
+# group: Django
+# --
 {% spaceless %}
 	$1
 {% endspaceless %}

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: JSDoc (multi-line)
+# key: /**
+# group: annotation
+# --
+/**
+ * ${1:Summary}
+ *
+ *$0
+ */

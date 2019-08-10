@@ -1,1 +1,3 @@
+# group: Django
+# --
 {% trans "${1:string to translate}" %}

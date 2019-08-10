@@ -1,3 +1,7 @@
+# key: comment
+# name: comment
+# group: Django
+# --
 {% comment %}
 	$1
 {% endcomment %}

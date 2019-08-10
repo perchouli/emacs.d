@@ -1,3 +1,5 @@
+# group: Django
+# --
 {% filter $1 %}
 	$2
 {% endfilter %}
