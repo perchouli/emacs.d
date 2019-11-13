@@ -30,6 +30,7 @@
 (require-package 'ggtags)
 ;; (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
 (require-package 'rjsx-mode)
+(require-package 'rust-mode)
 (add-to-list 'auto-mode-alist '("\\\(\.js\\|\.jsx\\)\\'" . rjsx-mode))
 (require-package 'typescript-mode)
 (add-to-list 'auto-mode-alist '("\\\(\.ts\\|\.tsx\\)\\'" . typescript-mode))
@@ -62,12 +63,18 @@
 ;; (add-hook 'python-mode-hook 'jedi:setup) ; Manually active
 (add-hook 'python-mode-hook
           (lambda ()
-            (setq flycheck-python-pylint-executable "~/.local/bin/pylint")))
+            (setq flycheck-python-pylint-executable "~/.local/bin/pylint")
+            (ggtags-mode 1)
+            ))
 
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-jedi)
 ;;(add-to-list 'company-backends 'company-go) ; gocode for module: https://github.com/stamblerre/gocode
   )
+(add-hook 'go-mode-hook
+          (lambda ()
+            (set (make-local-variable 'company-backends) '(company-go))
+            (company-mode)))
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-<tab>") 'company-complete-common)
 
@@ -98,7 +105,7 @@
           (lambda ()
             (when (string-match ".md" buffer-file-name)
               (defvar out-file-name (replace-regexp-in-string ".md" ".html" buffer-file-name))
-              (shell-command-to-string (concat "perl /opt/Markdown.pl " buffer-file-name " > " out-file-name))
+              ;(shell-command-to-string (concat "perl /opt/Markdown.pl " buffer-file-name " > " out-file-name))
               )))
 
 ;;; init.el ends here
